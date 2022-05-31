@@ -1,0 +1,124 @@
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlin-kapt"
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+//OpenForTesting
+apply plugin: 'kotlin-allopen'
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.example.keno"
+        minSdk 21
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures{
+        dataBinding = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation "androidx.legacy:legacy-support-v4:$versions.legacy_support_v4"
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+
+    implementation "androidx.cardview:cardview:$versions.cardview"
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerview"
+    implementation "com.google.android.material:material:$versions.material"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+
+    implementation "androidx.multidex:multidex:$versions.multidex"
+
+    //https://stackoverflow.com/questions/49956051/warning-kotlin-plugin-version-is-not-the-same-as-library-version-but-it-is/64988522
+    //implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    // below is required for kotlin at runtime - ActivityBase::class.qualifiedName+" "+this.localClassName, "" + message)
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$versions.kotlin"
+
+    // Koin for Android
+    implementation "io.insert-koin:koin-android:$versions.koin"
+
+    // Navigation components support
+    implementation "androidx.navigation:navigation-fragment-ktx:$versions.nav"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.nav"
+
+    // Testing Navigation not needed yet
+    // androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+    implementation "com.airbnb.android:lottie:$versions.lottie"
+    implementation "com.android.billingclient:billing-ktx:$versions.billing_version"
+
+    //RX
+    // for rx retrofit
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "io.reactivex.rxjava3:rxkotlin:$versions.rx_kotlin"
+    implementation "io.reactivex.rxjava3:rxandroid:$versions.rxandroid"
+
+    //ROOM
+    implementation "androidx.room:room-runtime:$versions.room"
+    implementation "androidx.room:room-rxjava3:$versions.room"
+    implementation "androidx.room:room-ktx:$versions.room"
+    kapt "androidx.room:room-compiler:$versions.room"
+    //ROOM ENDS
+
+    //Coroutines start
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$versions.coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+    //maybe later
+    //https://github.com/Kotlin/kotlinx.coroutines
+
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+
+    //Coroutines end
+
+
+    //tests
+    //todo update to JUnit Jupyter, code in frollo
+    testImplementation "junit:junit:$versions.junit"
+    androidTestImplementation "androidx.test.ext:junit:$versions.ext_junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso_core"
+
+    //
+    testImplementation "io.insert-koin:koin-test:$versions.koin"
+
+    //https://stackoverflow.com/questions/68872301/android-studio-arctic-fox-unable-to-run-junit-configuration-with-mockk
+    testImplementation "io.mockk:mockk:$versions.mockk"
+    //testImplementation "io.mockk:mockk-agent-jvm:$versions.mockk"
+    testImplementation group: "org.jetbrains.kotlin", name: "kotlin-reflect", version: "$versions.kotlin"
+
+    androidTestImplementation "androidx.test:runner:$versions.test_runner"
+    androidTestImplementation "androidx.test:rules:$versions.test_rules"
+
+    //for mockk in android test
+    //noinspection GradleDependency
+    androidTestImplementation "org.mockito:mockito-core:$versions.mockito_core"
+    //noinspection GradleDependency
+    androidTestImplementation "org.mockito:mockito-android:$versions.mockito_android"
+    androidTestImplementation "com.nhaarman:mockito-kotlin:$versions.mockito_kotlin"
+
+    testImplementation "com.google.code.gson:gson:$versions.gson"
+
+    //Below fixes the bug https://play.google.com/console/u/0/developers/6244967999041374511/app/4974929193643902363/vitals/crashes/dd7362fd/details?installedFrom=PLAY_STORE&days=30
+    implementation "androidx.work:work-runtime-ktx:$versions.work_version"
+
+    implementation project(":api")
+}

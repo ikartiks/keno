@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="com.example.keno.adapters.vh.CityDisplay" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp10"
+        android:background="@drawable/bg_for_cards"
+        android:elevation="@dimen/dp5"
+        android:orientation="vertical"
+        android:padding="@dimen/dp20">
+
+        <TextView
+           android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:text="@{item.name}"
+            tools:text="Brisbane" />
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:text="@{item.whether}"
+            tools:text="Brisbane" />
+    </LinearLayout>
+</layout>
