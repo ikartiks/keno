@@ -8,9 +8,9 @@ import retrofit2.http.Path
 
 interface APIClient {
 
-    @GET("list")
+    @GET("weather/list")
     suspend fun fetchCities(): Response<CitiesResponse>
 
-    @GET("{id}")
-    fun fetchCityDetails(@Path("id") id:String): Response<CityDetailResponse>
+    @GET("weather/{id}")
+    suspend fun fetchCityDetails(@Path("id") id:String): Response<CityDetailResponse>
 }

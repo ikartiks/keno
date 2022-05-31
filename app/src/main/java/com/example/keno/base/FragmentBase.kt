@@ -6,6 +6,8 @@ import android.text.Spannable
 import android.text.SpannableString
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import org.koin.core.component.KoinComponent
 
 @Suppress("JAVA_CLASS_ON_COMPANION")
@@ -23,6 +25,10 @@ abstract class FragmentBase : Fragment(), KoinComponent {
 
     open fun onBackPressed(): Boolean {
         return false
+    }
+
+    fun navigate(navDirections: NavDirections){
+        findNavController().navigate(navDirections)
     }
 
 }
