@@ -13,10 +13,6 @@ import org.koin.core.component.KoinComponent
 @Suppress("JAVA_CLASS_ON_COMPANION")
 abstract class FragmentBase : Fragment(), KoinComponent {
 
-    fun toolbarTitle(title: String) {
-        (activity as? ActivityBase)?.supportActionBar?.title = title
-    }
-
     fun isConnected(): Boolean {
         val connectivityManager = requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetworkInfo = connectivityManager.activeNetworkInfo

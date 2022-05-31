@@ -40,7 +40,7 @@ class FragmentCityDetail : FragmentBase() {
             val cityDetails = vm.getCityDetails(id)
             binding.item = cityDetails
             cityDetails.name?.let{
-                toolbarTitle(it)
+                binding.toolbar.toolbarTitle.text = it
             }
         }
     }

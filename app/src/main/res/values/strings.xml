@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Keno</string>
     <string name="Cities">Cities</string>
-    <string name="wind_speed">Wind speed</string>
+    <string name="wind_speed">Wind speed&#160;</string>
 </resources>

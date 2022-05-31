@@ -17,7 +17,6 @@
             android:layout_gravity="center"
             tools:text="Title"
             android:textColor="@color/black"
-            android:visibility="gone"
             tools:visibility="visible"/>
     </androidx.appcompat.widget.Toolbar>
 </layout>

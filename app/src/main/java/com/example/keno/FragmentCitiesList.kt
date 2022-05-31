@@ -34,7 +34,7 @@ class FragmentCitiesList : FragmentBase() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        toolbarTitle(resources.getString(R.string.Cities))
+        binding.toolbar.toolbarTitle.text = resources.getString(R.string.Cities)
 
         adapter = CitiesAdapter(object : OnBindClickListener {
             override fun onItemClick(view: View, position: Int, item: Any) {

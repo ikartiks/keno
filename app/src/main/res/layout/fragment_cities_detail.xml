@@ -39,15 +39,6 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintStart_toEndOf="@id/subtitle1"
             />
-        <TextView
-            android:id="@+id/details"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextAppearance.AppCompat.Body1"
-            tools:text="Brisbane"
-            android:text="@{item.sys.message}"
-            app:layout_constraintTop_toBottomOf="@id/subtitle1"
-            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
