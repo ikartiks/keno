@@ -1,21 +1,17 @@
 package com.example.keno
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.example.keno.adapters.CitiesAdapter
-import com.example.keno.adapters.vh.CityDisplay
-import com.kartik.grevocab.adapters.OnBindClickListener
 import com.example.keno.base.FragmentBase
 import com.example.keno.databinding.FragmentCitiesDetailBinding
-import com.example.keno.databinding.FragmentCitiesListBinding
 import com.example.keno.vm.FragmentCityDetailViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class FragmentCityDetail : FragmentBase() {
@@ -33,15 +29,14 @@ class FragmentCityDetail : FragmentBase() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val id = args.id
-        //toolbarTitle(resources.getString(R.string.Cities))
+        val progressDialog = ProgressDialog.show(requireContext(),"","Loading",true,true)
         CoroutineScope(Dispatchers.Main).launch {
-            val cityDetails = vm.getCityDetails(id)
+            val cityDetails = vm.getCityDetails(args.id)
             binding.item = cityDetails
             cityDetails.name?.let{
                 binding.toolbar.toolbarTitle.text = it
             }
+            progressDialog.dismiss()
         }
     }
 }
